@@ -212,7 +212,7 @@ function run(root, projectName, params) {
 
 function runVerbose(root, projectName, params) {
   var pkg = params.rnSource || 'react-native';
-  var proc = spawn('npm', ['install', '--verbose', '--save', pkg], {stdio: 'inherit'});
+  var proc = spawn(process.platform === 'win32'?'npm.cmd':'npm', ['install', '--verbose', '--save', pkg], {stdio: 'inherit'});
   proc.on('close', function (code) {
     if (code !== 0) {
       console.error('`npm install --save ' + pkg + '` failed');
